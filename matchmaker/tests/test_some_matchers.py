@@ -1,15 +1,5 @@
 from hamcrest import *
-from .decorators import match_maker
-
-items = [1, 2, 3, 4]
-not_ = is_not
-
-
-def test_in():
-    assert_that(4, is_in(items))
-
-def test_out():
-    assert_that(5, not_(is_in(items)))
+from matchmaker.decorators import match_maker
 
 @match_maker
 def is_four(item):
@@ -38,5 +28,5 @@ def _is_five_or_even(item):
     assert_that(item, any_of(is_five(), is_even()))
 
 def test_is_five_or_even():
-    for value in range(10):
+    for value in [0, 2, 4, 5, 6, 8]:
         yield _is_five_or_even, value
