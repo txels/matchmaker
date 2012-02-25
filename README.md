@@ -8,23 +8,23 @@ This is a silly example of usage, just to see how it looks:
 
 ```python
 
-    from hamcrest import *
-    from matchmaker.decorators import match_maker
+from hamcrest import *
+from matchmaker.decorators import match_maker
 
-    @match_maker
-    def is_four(item):
-        """Is four"""
-        return item == 4
+@match_maker
+def is_four(item):
+    """Is four"""
+    return item == 4
 
-    @match_maker
-    def is_even(item):
-        """Is even"""
-        return item % 2 == 0
+@match_maker
+def is_even(item):
+    """Is even"""
+    return item % 2 == 0
 
-    def test_is_four():
-        assert_that(4, is_four())
+def test_is_four():
+    assert_that(4, is_four())
 
-    def test_is_four_or_even():
-        assert_that(8, any_of(is_four(), is_even()))
+def test_is_four_or_even():
+    assert_that(8, any_of(is_four(), is_even()))
 
 ```
