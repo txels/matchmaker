@@ -2,7 +2,10 @@ from hamcrest.core.base_matcher import BaseMatcher
 
 
 class CallableMatcher(BaseMatcher):
-    
+    """
+    This will be used as a base class for all created matchers
+    """
+
     def __init__(self, *args, **kwargs):
         super(CallableMatcher, self).__init__(*args, **kwargs)
 
@@ -18,16 +21,16 @@ def match_maker(func):
     """
     def _func(self, *args, **kwargs):
         return func(*args, **kwargs)
-    if func.__doc__:
-        retval = func.__doc__
-    else:
-        retval = func.__name__.replace('_', ' ').capitalize()
-    print('retval: ' + retval)
-    def describe_to(self, description):
-        return description.append_text(retval)
-    cls = type(func.__name__, (CallableMatcher,),
-               { 'callee': _func,
-                 'describe_to': describe_to
-               })
-    return cls
 
+    if func.__doc__:
+        funcdoc = func.__doc__
+    else:
+        funcdoc = func.__name__.replace('_', ' ').capitalize()
+
+    def describe_to(self, description):
+        return description.append_text(funcdoc)
+
+    cls = type(func.__name__, (CallableMatcher,),
+               {'callee': _func,
+                'describe_to': describe_to})
+    return cls
