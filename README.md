@@ -7,16 +7,15 @@ name, is used as descriptive string for the case where matching fails.
 This is a silly example of usage, just to see how it looks:
 
 ```python
-
 from hamcrest import *
-from matchmaker.decorators import match_maker
+from matchmaker import matcher
 
-@match_maker
+@matcher
 def is_four(item):
     """Is four"""
     return item == 4
 
-@match_maker
+@matcher
 def is_even(item):
     """Is even"""
     return item % 2 == 0
@@ -26,5 +25,4 @@ def test_is_four():
 
 def test_is_four_or_even():
     assert_that(8, any_of(is_four(), is_even()))
-
 ```

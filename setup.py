@@ -12,13 +12,13 @@ hamcrest matchers with minimum extra coding.
 
 Examples::
     
-    from matchmaker.decorators import match_maker
+    from matchmaker import matcher
 
-    @match_maker
+    @matcher
     def is_even(item):
         return item % 2 == 0
 
-    @match_maker
+    @matcher
     def ends_like(item, data, length=3):
         "String whose last {1} chars match those for '{0}'"
         return item.endswith(data[-length:])

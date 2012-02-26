@@ -1,19 +1,19 @@
 from hamcrest import (assert_that, is_not as not_, any_of, contains_string)
-from matchmaker.decorators import match_maker
+from matchmaker import matcher
 
 
-@match_maker
+@matcher
 def is_four(item):
     """Is four"""
     return item == 4
 
 
-@match_maker
+@matcher
 def is_five(item):
     return item == 5
 
 
-@match_maker
+@matcher
 def is_even(item):
     """Is even"""
     return item % 2 == 0
@@ -44,7 +44,7 @@ def test_is_five_or_even():
         yield _is_five_or_even, value
 
 
-@match_maker
+@matcher
 def ends_like(item, arg1):
     """String that ends like '{0}'"""
     return item.endswith(arg1[-3:])
@@ -62,7 +62,7 @@ def test_ends_like_composite():
     assert_that('hello', any_of(ends_like('bella'), ends_like('chello')))
 
 
-@match_maker
+@matcher
 def end_chars_like(item, arg1, length=3):
     """String whose last {1} chars match those for '{0}'"""
     return item.endswith(arg1[-length:])

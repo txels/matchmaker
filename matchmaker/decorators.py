@@ -14,7 +14,7 @@ class CallableMatcher(BaseMatcher):
         return self.callee(item, *self.args, **self.kwargs)
 
 
-def match_maker(func):
+def matcher(func):
     """
     Decorator that converts a function into a hamcrest matcher
 
