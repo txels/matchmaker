@@ -62,3 +62,13 @@ def test_not_ends_like():
 
 def test_ends_like_composite():
     assert_that('hello', any_of(ends_like('bella'), ends_like('chello')))
+
+
+@match_maker
+def end_chars_like(item, arg1, length=3):
+    """String whose last {1} chars match those for '{0}'"""
+    return item.endswith(arg1[-length:])
+
+
+def test_not_end_chars_like():
+    assert_that('helilo', end_chars_like('trello', 2))
