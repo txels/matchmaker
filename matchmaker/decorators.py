@@ -7,10 +7,11 @@ class CallableMatcher(BaseMatcher):
     """
 
     def __init__(self, *args, **kwargs):
-        super(CallableMatcher, self).__init__(*args, **kwargs)
+        self.args = args
+        self.kwargs = kwargs
 
     def _matches(self, item):
-        return self.callee(item)
+        return self.callee(item, *self.args, **self.kwargs)
 
 
 def match_maker(func):
@@ -28,7 +29,8 @@ def match_maker(func):
         funcdoc = func.__name__.replace('_', ' ').capitalize()
 
     def describe_to(self, description):
-        return description.append_text(funcdoc)
+        mydoc = funcdoc.format(*self.args)
+        return description.append_text(mydoc)
 
     cls = type(func.__name__, (CallableMatcher,),
                {'callee': _func,
