@@ -1,2 +1,6 @@
 *.pyc
 sandbox/
+.coverage
+cover/
+dist/
+matchmaker.egg-info/

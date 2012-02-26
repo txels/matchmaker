@@ -1,7 +1,5 @@
-from hamcrest import *
+from hamcrest import (assert_that, is_not as not_, any_of, contains_string)
 from matchmaker.decorators import match_maker
-
-not_ = is_not
 
 
 @match_maker
@@ -72,3 +70,13 @@ def end_chars_like(item, arg1, length=3):
 
 def test_not_end_chars_like():
     assert_that('helilo', end_chars_like('trello', 2))
+
+
+def test_not_end_chars_like_fail():
+    try:
+        assert_that('helilo', end_chars_like('trello', 4))
+    except AssertionError as e:
+        assert_that(str(e), contains_string(
+            "String whose last 4 chars match those for 'trello'"))
+    else:
+        raise AssertionError('You shall not pass...')

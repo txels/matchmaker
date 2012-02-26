@@ -1,0 +1,6 @@
+PyHamcrest
+nose
+coverage
+Sphinx
+pep8
+flake8
