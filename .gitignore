@@ -4,3 +4,4 @@ sandbox/
 cover/
 dist/
 matchmaker.egg-info/
+docs/_build/
