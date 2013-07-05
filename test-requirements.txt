@@ -1,4 +1,4 @@
-PyHamcrest
+-r requirements.txt
 nose
 coverage
 Sphinx
