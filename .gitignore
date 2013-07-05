@@ -1,6 +1,7 @@
 *.pyc
 sandbox/
 .coverage
+.ropeproject
 cover/
 dist/
 matchmaker.egg-info/
