@@ -2,20 +2,21 @@
 # # coding: utf-8
 
 from setuptools import setup
-from matchmaker import __version__
+__version__ = '0.1.3'
+
 
 LONG_DESC = """
 Decorators that simplify the creation of Hamcrest matchers.
 
 From a function (with an optional appropriate docstring), create
-hamcrest matchers with minimum extra coding. 
+hamcrest matchers with minimum extra coding.
 
 The sources can be found in GitHub_.
 
-.. _GitHub: https://github.com/txels/matchmaker/ 
+.. _GitHub: https://github.com/txels/matchmaker/
 
 Examples::
-    
+
     from matchmaker import matcher
 
     @matcher
