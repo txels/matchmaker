@@ -64,19 +64,29 @@ def test_ends_like_composite():
 
 @matcher
 def end_chars_like(item, arg1, length=3):
-    """String whose last {1} chars match those for '{0}'"""
+    """String whose last {length} chars match those for '{0}'"""
     return item.endswith(arg1[-length:])
 
 
 def test_not_end_chars_like():
-    assert_that('helilo', end_chars_like('trello', 2))
+    assert_that('helilo', end_chars_like('trello', length=2))
 
 
 def test_not_end_chars_like_fail():
     try:
-        assert_that('helilo', end_chars_like('trello', 4))
+        assert_that('helilo', end_chars_like('trello', length=4))
     except AssertionError as e:
         assert_that(str(e), contains_string(
             "String whose last 4 chars match those for 'trello'"))
+    else:
+        raise AssertionError('You shall not pass...')
+
+
+def test_report_properly_uses_default_kwargs():
+    try:
+        assert_that('helilo', end_chars_like('trello'))
+    except AssertionError as e:
+        assert_that(str(e), contains_string(
+            "String whose last 3 chars match those for 'trello'"))
     else:
         raise AssertionError('You shall not pass...')

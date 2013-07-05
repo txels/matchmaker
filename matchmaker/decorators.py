@@ -1,3 +1,4 @@
+from inspect import getargspec
 from hamcrest.core.base_matcher import BaseMatcher
 
 
@@ -21,6 +22,15 @@ def matcher(func):
     The function must accept a parameter and return a boolean
     """
     def _func(self, *args, **kwargs):
+        spec = getargspec(func)
+        if spec.defaults:
+            default_kwargs = dict(zip(
+                tuple(spec.args[-len(spec.defaults):]),
+                spec.defaults
+            ))
+
+            default_kwargs.update(self.kwargs)
+            self.kwargs = default_kwargs
         return func(*args, **kwargs)
 
     if func.__doc__:
@@ -29,7 +39,7 @@ def matcher(func):
         funcdoc = func.__name__.replace('_', ' ').capitalize()
 
     def describe_to(self, description):
-        mydoc = funcdoc.format(*self.args)
+        mydoc = funcdoc.format(*self.args, **self.kwargs)
         return description.append_text(mydoc)
 
     cls = type(func.__name__, (CallableMatcher,),
