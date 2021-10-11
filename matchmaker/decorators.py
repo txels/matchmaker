@@ -1,4 +1,4 @@
-from inspect import getargspec
+import inspect
 from hamcrest.core.base_matcher import BaseMatcher
 
 
@@ -22,7 +22,7 @@ def matcher(func):
     The function must accept a parameter and return a boolean
     """
     def _func(self, *args, **kwargs):
-        spec = getargspec(func)
+        spec = inspect.getfullargspec(func)
         if spec.defaults:
             default_kwargs = dict(zip(
                 tuple(spec.args[-len(spec.defaults):]),

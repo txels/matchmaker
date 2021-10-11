@@ -2,7 +2,7 @@
 # # coding: utf-8
 
 from setuptools import setup
-__version__ = '0.1.3'
+from matchmaker import __version__
 
 
 LONG_DESC = """
@@ -53,6 +53,7 @@ setup(
     author_email='carles@barrobes.com',
     url='https://github.com/txels/matchmaker',
     packages=['matchmaker'],
+    install_requires=['PyHamcrest'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',

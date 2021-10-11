@@ -1,3 +1,4 @@
+import pytest
 from hamcrest import (assert_that, is_not as not_, any_of, contains_string)
 from matchmaker import matcher
 
@@ -35,13 +36,9 @@ def test_is_five_or_four():
     assert_that(4, any_of(is_four(), is_five()))
 
 
-def _is_five_or_even(item):
-    assert_that(item, any_of(is_five(), is_even()))
-
-
-def test_is_five_or_even():
-    for value in [0, 2, 4, 5, 6, 8]:
-        yield _is_five_or_even, value
+@pytest.mark.parametrize("value", [0, 2, 4, 5, 6, 8])
+def test_is_five_or_even(value):
+    assert_that(value, any_of(is_five(), is_even()))
 
 
 @matcher

@@ -1,8 +1,12 @@
+*.swp
 *.pyc
-sandbox/
 .coverage
-.ropeproject
+tags.*
+tags
+build/
 cover/
 dist/
-matchmaker.egg-info/
 docs/_build/
+matchmaker.egg-info/
+sandbox/
+.venv/

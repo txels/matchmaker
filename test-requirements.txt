@@ -1,6 +1,7 @@
 -r requirements.txt
-nose
-coverage
+black
+pytest
+pytest-coverage
 Sphinx
 pep8
 flake8
